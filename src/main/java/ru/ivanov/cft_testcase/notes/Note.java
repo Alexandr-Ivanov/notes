@@ -3,8 +3,11 @@
  */
 package ru.ivanov.cft_testcase.notes;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 /**
  * @author a.ivanov
@@ -13,18 +16,21 @@ import javax.persistence.Id;
 @Entity
 public class Note {
 	 @Id
-	 private int id;
+	 @GeneratedValue
+	 private long id = 0;
+	 @Lob
+	 @Column
 	 private String content;
 	/**
 	 * @return the id
 	 */
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	/**
