@@ -3,6 +3,8 @@
  */
 package ru.ivanov.cft_testcase.notes;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -17,6 +19,13 @@ public class Domain {
 		sessionFactory = factory;
 	}
 
+	public void addNote(String content) {
+		// TODO Auto-generated method stub
+		Note note = new Note();
+		note.setContent(content);
+		addNote(note);
+	}
+	
 	public long addNote(Note note) {
 		try (Session session = sessionFactory.openSession()) {
 			Transaction transaction = session.beginTransaction();
@@ -51,6 +60,14 @@ public class Domain {
 		Note note = new Note();
 		note.setId(noteId);
 		deleteNote(note);
+	}
+	
+	@SuppressWarnings({ "deprecation", "unchecked" })
+	public List<Note> getAllNotes() {
+		try (Session session = sessionFactory.openSession()) {
+			return session.createCriteria(Note.class).list();
+		}
+		
 	}
 	
 	public Note getNote(long noteId) {
