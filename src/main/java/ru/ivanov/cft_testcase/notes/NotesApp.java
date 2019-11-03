@@ -70,7 +70,7 @@ public class NotesApp {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				StringDialog dialog = new StringDialog(shell, ADD_NOTE);
-				String content = dialog.open(null);
+				String content = dialog.open("");
 				
 				if (null != content && !content.isEmpty()) {
 					domain.addNote(content);
