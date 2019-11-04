@@ -6,11 +6,8 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.events.MouseAdapter;
-import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 
@@ -68,15 +65,18 @@ public class StringDialog extends Dialog {
 
 		text = new Text(shell, SWT.MULTI | SWT.BORDER | SWT.WRAP);
 		text.setText(oldText);
-		GridData gridData = new GridData(GridData.VERTICAL_ALIGN_FILL, GridData.HORIZONTAL_ALIGN_FILL, true, true, 2, 1);
+		GridData gridData = new GridData(GridData.VERTICAL_ALIGN_FILL, GridData.HORIZONTAL_ALIGN_CENTER, true, true, 2, 1);
+		gridData.widthHint = 440;
+		gridData.heightHint = 200;
 		text.setLayoutData(gridData);
-		text.setSize(400, 25);
 
 		Button buttonOK = new Button(shell, SWT.PUSH);
 		buttonOK.setText("Ok");
 		buttonOK.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_END));
+		
 		Button buttonCancel = new Button(shell, SWT.PUSH);
 		buttonCancel.setText("Cancel");
+		
 		buttonOK.addListener(SWT.Selection, new Listener() {
 			@Override
 			public void handleEvent(Event event) {
@@ -84,6 +84,7 @@ public class StringDialog extends Dialog {
 				shell.dispose();
 			}
 		});
+		
 		buttonCancel.addListener(SWT.Selection, new Listener() {
 	    	  @Override
 		      public void handleEvent(Event event) {
