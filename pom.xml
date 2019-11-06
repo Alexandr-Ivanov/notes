@@ -71,10 +71,11 @@
 		</plugins>
 	</build>
 	<dependencies>
+		<!-- https://mvnrepository.com/artifact/org.eclipse.platform/org.eclipse.swt.win32.win32.x86_64 -->
 		<!-- https://mvnrepository.com/artifact/org.eclipse.platform/org.eclipse.swt.gtk.linux.x86_64 -->
 		<dependency>
 			<groupId>org.eclipse.platform</groupId>
-			<artifactId>org.eclipse.swt.gtk.linux.x86_64</artifactId>
+			<artifactId>${swt.artifact.id}</artifactId>
 			<version>3.112.0</version>
 			<exclusions>
 				<exclusion>
@@ -107,4 +108,18 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	<profiles>
+		<profile>
+			<id>Windows64</id>
+			<properties>
+				<swt.artifact.id>org.eclipse.swt.win32.win32.x86_64</swt.artifact.id>
+			</properties>
+		</profile>
+		<profile>
+			<id>Linux64</id>
+			<properties>
+				<swt.artifact.id>org.eclipse.swt.gtk.linux.x86_64</swt.artifact.id>
+			</properties>
+		</profile>
+	</profiles>
 </project>
