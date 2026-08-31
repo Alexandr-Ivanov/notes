@@ -12,12 +12,11 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
+				<version>3.15.0</version>
 				<configuration>
 					<encoding>UTF-8</encoding>
-					<source>1.8</source>
-					<target>1.8</target>
 				</configuration>
 				<executions>
 					<execution>
@@ -37,6 +36,7 @@
 				</executions>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>2.4</version>
 				<configuration>
@@ -76,7 +76,7 @@
 		<dependency>
 			<groupId>org.eclipse.platform</groupId>
 			<artifactId>${swt.artifact.id}</artifactId>
-			<version>3.112.0</version>
+			<version>3.134.0</version>
 			<exclusions>
 				<exclusion>
 					<artifactId>org.eclipse.swt.gtk.linux.aarch64</artifactId>
