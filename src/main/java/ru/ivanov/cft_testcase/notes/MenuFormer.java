@@ -93,7 +93,7 @@ public class MenuFormer {
         table.setLinesVisible(true);
     }
 
-    private static void fillTable(Table table, Domain domain) {
+    public static void fillTable(Table table, Domain domain) {
         List<Note> notes = domain.getAllNotes();
 
         for (Note note : notes) {
@@ -102,7 +102,6 @@ public class MenuFormer {
         }
     }
 
-    private static final String TITLE = "Notes";
     private static final String ADD_NOTE = " добавить запись";
     private static final String EDIT_NOTE = "изменить запись";
     private static final String DELETE_NOTE = "удалить запись";
