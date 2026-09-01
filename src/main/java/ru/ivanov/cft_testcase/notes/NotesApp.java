@@ -164,8 +164,7 @@ public class NotesApp {
 
 	private static SessionFactory initSessionFactory() {
 		Configuration configuration = new Configuration().configure();
-		SessionFactory sessionFactory = configuration.buildSessionFactory();
-		return sessionFactory;
+        return configuration.buildSessionFactory();
 	}
 
 	private static final String TITLE = "Notes";
