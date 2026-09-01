@@ -31,7 +31,7 @@ public class Domain {
 			Transaction transaction = session.beginTransaction();
 			
 			try {
-				session.save(note);
+				session.persist(note);
 				transaction.commit();
 			} catch (Exception e) {
 				transaction.rollback();
@@ -47,7 +47,7 @@ public class Domain {
 			Transaction transaction = session.beginTransaction();
 			
 			try {
-				session.delete(note);
+				session.remove(note);
 				transaction.commit();
 			} catch (Exception e) {
 				transaction.rollback();
@@ -65,7 +65,8 @@ public class Domain {
 	@SuppressWarnings({ "deprecation", "unchecked" })
 	public List<Note> getAllNotes() {
 		try (Session session = sessionFactory.openSession()) {
-			return session.createCriteria(Note.class).list();
+			Query query = session.createQuery("FROM Note note");
+			return query.getResultList();
 		}
 		
 	}
@@ -81,7 +82,7 @@ public class Domain {
 			Transaction transaction = session.beginTransaction();
 			
 			try {
-				session.update(note);
+				session.merge(note);
 				transaction.commit();
 			} catch (Exception e) {
 				transaction.rollback();
