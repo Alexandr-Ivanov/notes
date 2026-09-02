@@ -24,21 +24,39 @@ import ru.ivanov.cft_testcase.notes.views.StringDialog;
 public class MenuFormer {
 
     public static void addMenuItems(Shell shell, Table table, Domain domain, Menu menuBar) {
-        MenuItem addNoteItem = new MenuItem(menuBar, SWT.PUSH);
-        addNoteItem.setText(ADD_NOTE);
-        addNoteItem.addSelectionListener(new SelectionAdapter() {
+        addAddNoteMenuItem(shell, table, domain, menuBar);
+
+        addEditNoteMenuItem(shell, table, domain, menuBar);
+
+        addDeleteNoteMenuItem(shell, table, domain, menuBar);
+    }
+
+    private static void addDeleteNoteMenuItem(Shell shell, Table table, Domain domain, Menu menuBar) {
+        MenuItem deleteNoteItem = new MenuItem(menuBar, SWT.PUSH);
+        deleteNoteItem.setText(DELETE_NOTE);
+        deleteNoteItem.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                StringDialog dialog = new StringDialog(shell, ADD_NOTE);
-                String content = dialog.open("");
+                TableItem[] selection = table.getSelection();
 
-                if (null != content && !content.isEmpty()) {
-                    domain.addNote(content);
-                    refreshTable(table, domain);
+                if (0 < selection.length) {
+                    TableItem item = selection[0];
+                    System.out.println(item.getText(0));
+                    MessageBox box = new MessageBox(shell, SWT.OK | SWT.CANCEL | SWT.ICON_QUESTION | SWT.APPLICATION_MODAL);
+                    box.setMessage(DELETE_NOTE + ": " + item.getText(1));
+                    int result = box.open();
+                    System.out.println(result);
+
+                    if (SWT.OK == result) {
+                        domain.deleteNote(Long.parseLong(item.getText(0)));
+                        refreshTable(table, domain);
+                    }
                 }
             }
         });
+    }
 
+    private static void addEditNoteMenuItem(Shell shell, Table table, Domain domain, Menu menuBar) {
         MenuItem editNoteItem = new MenuItem(menuBar, SWT.PUSH);
         editNoteItem.setText(EDIT_NOTE);
         editNoteItem.addSelectionListener(new SelectionAdapter() {
@@ -61,26 +79,20 @@ public class MenuFormer {
                 }
             }
         });
+    }
 
-        MenuItem deleteNoteItem = new MenuItem(menuBar, SWT.PUSH);
-        deleteNoteItem.setText(DELETE_NOTE);
-        deleteNoteItem.addSelectionListener(new SelectionAdapter() {
+    private static void addAddNoteMenuItem(Shell shell, Table table, Domain domain, Menu menuBar) {
+        MenuItem addNoteItem = new MenuItem(menuBar, SWT.PUSH);
+        addNoteItem.setText(ADD_NOTE);
+        addNoteItem.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                TableItem[] selection = table.getSelection();
+                StringDialog dialog = new StringDialog(shell, ADD_NOTE);
+                String content = dialog.open("");
 
-                if (0 < selection.length) {
-                    TableItem item = selection[0];
-                    System.out.println(item.getText(0));
-                    MessageBox box = new MessageBox(shell, SWT.OK | SWT.CANCEL | SWT.ICON_QUESTION | SWT.APPLICATION_MODAL);
-                    box.setMessage(DELETE_NOTE + ": " + item.getText(1));
-                    int result = box.open();
-                    System.out.println(result);
-
-                    if (SWT.OK == result) {
-                        domain.deleteNote(Long.parseLong(item.getText(0)));
-                        refreshTable(table, domain);
-                    }
+                if (null != content && !content.isEmpty()) {
+                    domain.addNote(content);
+                    refreshTable(table, domain);
                 }
             }
         });
