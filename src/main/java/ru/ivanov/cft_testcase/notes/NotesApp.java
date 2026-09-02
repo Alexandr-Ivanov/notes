@@ -21,9 +21,8 @@ public class NotesApp {
      */
     public static void main(String[] args) {
         try (SessionFactory sessionFactory = initSessionFactory()) {
-            Domain domain = new Domain(sessionFactory);
             Display display = new Display();
-            Shell shell = newShell(display, domain);
+            Shell shell = newShell(display, new Domain(sessionFactory));
             shell.open();
 
             while (!shell.isDisposed()) {
@@ -37,13 +36,18 @@ public class NotesApp {
     }
 
     private static Shell newShell(Display display, Domain domain) {
+        Shell shell = createShell(display);
+
+        Table table = newTable(domain, shell);
+        formMenu(shell, table, domain);
+        return shell;
+    }
+
+    private static Shell createShell(Display display) {
         Shell shell = new Shell(display);
         shell.setText(TITLE);
         FillLayout layout = new FillLayout();
         shell.setLayout(layout);
-
-        Table table = newTable(domain, shell);
-        formMenu(shell, table, domain);
         return shell;
     }
 
