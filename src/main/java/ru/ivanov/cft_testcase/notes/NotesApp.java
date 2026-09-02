@@ -43,7 +43,6 @@ public class NotesApp {
         shell.setLayout(layout);
 
         Table table = newTable(domain, shell);
-        table.setLinesVisible(true);
         formMenu(shell, table, domain);
         return shell;
     }
@@ -68,7 +67,8 @@ public class NotesApp {
         tableColumn.setWidth(50);
         TableColumn tableColumn2 = new TableColumn(table, SWT.LEFT);
         tableColumn2.setWidth(500);
-        MenuFormer.fillTable(table, domain);
+        NotesController.fillTable(table, domain);
+        table.setLinesVisible(true);
         return table;
     }
 

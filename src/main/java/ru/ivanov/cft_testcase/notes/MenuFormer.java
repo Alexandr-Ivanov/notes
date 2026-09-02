@@ -46,22 +46,6 @@ public class MenuFormer {
         addNoteItem.addSelectionListener(new AddNoteListener(shell, table, domain, ADD_NOTE));
     }
 
-    public static void refreshTable(Table table, Domain domain) {
-        table.setLinesVisible(false);
-        table.removeAll();
-        fillTable(table, domain);
-        table.setLinesVisible(true);
-    }
-
-    public static void fillTable(Table table, Domain domain) {
-        List<Note> notes = domain.getAllNotes();
-
-        for (Note note : notes) {
-            TableItem item = new TableItem(table, SWT.NONE);
-            item.setText(new String[] { Long.toString(note.getId()), note.getContent() });
-        }
-    }
-
     private static final String ADD_NOTE = " добавить запись";
     private static final String EDIT_NOTE = "изменить запись";
     private static final String DELETE_NOTE = "удалить запись";

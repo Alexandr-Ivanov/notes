@@ -6,7 +6,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 
 import ru.ivanov.cft_testcase.notes.Domain;
-import ru.ivanov.cft_testcase.notes.MenuFormer;
+import ru.ivanov.cft_testcase.notes.NotesController;
 import ru.ivanov.cft_testcase.notes.views.StringDialog;
 
 public class AddNoteListener extends SelectionAdapter {
@@ -29,7 +29,7 @@ public class AddNoteListener extends SelectionAdapter {
 
         if (null != content && !content.isEmpty()) {
             domain.addNote(content);
-            MenuFormer.refreshTable(table, domain);
+            NotesController.refreshTable(table, domain);
         }
     }
 }

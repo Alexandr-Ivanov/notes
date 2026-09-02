@@ -7,8 +7,8 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 
 import ru.ivanov.cft_testcase.notes.Domain;
-import ru.ivanov.cft_testcase.notes.MenuFormer;
 import ru.ivanov.cft_testcase.notes.Note;
+import ru.ivanov.cft_testcase.notes.NotesController;
 import ru.ivanov.cft_testcase.notes.views.StringDialog;
 
 public class EditNoteListener extends SelectionAdapter {
@@ -38,7 +38,7 @@ public class EditNoteListener extends SelectionAdapter {
                 Note note = domain.getNote(Long.parseLong(item.getText(0)));
                 note.setContent(content);
                 domain.updateNote(note);
-                MenuFormer.refreshTable(table, domain);
+                NotesController.refreshTable(table, domain);
             }
         }
     }

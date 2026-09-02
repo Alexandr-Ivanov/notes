@@ -8,7 +8,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 import ru.ivanov.cft_testcase.notes.Domain;
-import ru.ivanov.cft_testcase.notes.MenuFormer;
+import ru.ivanov.cft_testcase.notes.NotesController;
 
 public class DeleteNoteListener extends SelectionAdapter {
     private final Shell shell;
@@ -37,7 +37,7 @@ public class DeleteNoteListener extends SelectionAdapter {
 
             if (SWT.OK == result) {
                 domain.deleteNote(Long.parseLong(item.getText(0)));
-                MenuFormer.refreshTable(table, domain);
+                NotesController.refreshTable(table, domain);
             }
         }
     }
