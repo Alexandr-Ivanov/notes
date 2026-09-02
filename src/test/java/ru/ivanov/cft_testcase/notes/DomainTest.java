@@ -29,7 +29,7 @@ public class DomainTest {
 			Note note = new Note();
 			note.setContent("note content");
 			domain.addNote(note);
-			Assert.assertEquals(++ oldCount, domain.noteCount());
+			Assert.assertEquals(oldCount + 1, domain.noteCount());
 		}
 	}
 	
@@ -95,7 +95,6 @@ public class DomainTest {
 	
 	private SessionFactory initSessionFactory() {
 		Configuration configuration = new Configuration().configure();
-		SessionFactory sessionFactory = configuration.buildSessionFactory();
-		return sessionFactory;
+        return configuration.buildSessionFactory();
 	}
 }
