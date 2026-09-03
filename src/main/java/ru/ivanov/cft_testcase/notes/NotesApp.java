@@ -39,7 +39,7 @@ public class NotesApp {
         Shell shell = createShell(display);
         Table table = newTable(shell);
         NotesController controller = new NotesController(table, domain);
-        formMenu(shell, table, domain, controller);
+        formMenu(shell, table, controller);
         controller.fillTable();
         return shell;
     }
@@ -52,9 +52,9 @@ public class NotesApp {
         return shell;
     }
 
-    private static void formMenu(Shell shell, Table table, Domain domain, NotesController controller) {
+    private static void formMenu(Shell shell, Table table, NotesController controller) {
         Menu menuBar = new Menu(shell, SWT.BAR);
-        MenuFormer.addMenuItems(shell, table, domain, menuBar, controller);
+        MenuFormer.addMenuItems(shell, table, menuBar, controller);
         shell.setMenuBar(menuBar);
     }
 

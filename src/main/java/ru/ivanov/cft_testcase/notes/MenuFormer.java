@@ -19,22 +19,22 @@ import ru.ivanov.cft_testcase.notes.listeners.EditNoteListener;
  */
 public class MenuFormer {
 
-    public static void addMenuItems(Shell shell, Table table, Domain domain, Menu menuBar, NotesController controller) {
+    public static void addMenuItems(Shell shell, Table table, Menu menuBar, NotesController controller) {
         addAddNoteMenuItem(shell, menuBar, controller);
-        addEditNoteMenuItem(shell, table, domain, menuBar, controller);
-        addDeleteNoteMenuItem(shell, table, domain, menuBar, controller);
+        addEditNoteMenuItem(shell, table, menuBar, controller);
+        addDeleteNoteMenuItem(shell, table, menuBar, controller);
     }
 
-    private static void addDeleteNoteMenuItem(Shell shell, Table table, Domain domain, Menu menuBar, NotesController controller) {
+    private static void addDeleteNoteMenuItem(Shell shell, Table table, Menu menuBar, NotesController controller) {
         MenuItem deleteNoteItem = new MenuItem(menuBar, SWT.PUSH);
         deleteNoteItem.setText(DELETE_NOTE);
-        deleteNoteItem.addSelectionListener(new DeleteNoteListener(shell, table, domain, DELETE_NOTE, controller));
+        deleteNoteItem.addSelectionListener(new DeleteNoteListener(shell, table, DELETE_NOTE, controller));
     }
 
-    private static void addEditNoteMenuItem(Shell shell, Table table, Domain domain, Menu menuBar, NotesController controller) {
+    private static void addEditNoteMenuItem(Shell shell, Table table, Menu menuBar, NotesController controller) {
         MenuItem editNoteItem = new MenuItem(menuBar, SWT.PUSH);
         editNoteItem.setText(EDIT_NOTE);
-        editNoteItem.addSelectionListener(new EditNoteListener(shell, table, domain, EDIT_NOTE, controller));
+        editNoteItem.addSelectionListener(new EditNoteListener(shell, table, EDIT_NOTE, controller));
     }
 
     private static void addAddNoteMenuItem(Shell shell, Menu menuBar, NotesController controller) {

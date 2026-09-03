@@ -21,19 +21,31 @@ public class NotesController {
         refreshTable();
     }
 
+    public void deleteNote(long noteId) {
+        domain.deleteNote(noteId);
+        refreshTable();
+    }
+
+    public void updateNote(long noteId, String content) {
+        Note note = domain.getNote(noteId);
+        note.setContent(content);
+        domain.updateNote(note);
+        refreshTable();
+    }
+
     public void  refreshTable() {
         table.setLinesVisible(false);
         table.removeAll();
-        doFillTable(table, domain);
+        doFillTable();
         table.setLinesVisible(true);
     }
 
     public void fillTable() {
-        doFillTable(table, domain);
+        doFillTable();
         table.setLinesVisible(true);
     }
 
-    private static void doFillTable(Table table, Domain domain) {
+    private void doFillTable() {
         List<Note> notes = domain.getAllNotes();
 
         for (Note note : notes) {
