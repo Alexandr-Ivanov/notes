@@ -4,19 +4,16 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Shell;
 
-import ru.ivanov.cft_testcase.notes.Domain;
 import ru.ivanov.cft_testcase.notes.NotesController;
 import ru.ivanov.cft_testcase.notes.views.StringDialog;
 
 public class AddNoteListener implements SelectionListener {
     private final Shell shell;
-    private final Domain domain;
     private final String title;
     private final NotesController controller;
 
-    public AddNoteListener(Shell shell, Domain domain, String title, NotesController controller) {
+    public AddNoteListener(Shell shell, String title, NotesController controller) {
         this.shell = shell;
-        this.domain = domain;
         this.title = title;
         this.controller = controller;
     }
@@ -27,8 +24,7 @@ public class AddNoteListener implements SelectionListener {
         String content = dialog.open("");
 
         if (null != content && !content.isEmpty()) {
-            domain.addNote(content);
-            controller.refreshTable();
+            controller.addNote(content);
         }
     }
 

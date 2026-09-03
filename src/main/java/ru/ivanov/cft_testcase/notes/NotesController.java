@@ -16,18 +16,19 @@ public class NotesController {
         this.domain = domain;
     }
 
-    public void  refreshTable() {
-        refreshTable(table, domain);
+    public void addNote(String content) {
+        domain.addNote(content);
+        refreshTable();
     }
 
-    public void fillTable() {
+    public void  refreshTable() {
+        table.setLinesVisible(false);
+        table.removeAll();
         doFillTable(table, domain);
         table.setLinesVisible(true);
     }
 
-    public static void refreshTable(Table table, Domain domain) {
-        table.setLinesVisible(false);
-        table.removeAll();
+    public void fillTable() {
         doFillTable(table, domain);
         table.setLinesVisible(true);
     }
