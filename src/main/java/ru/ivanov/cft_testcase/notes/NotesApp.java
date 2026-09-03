@@ -37,7 +37,6 @@ public class NotesApp {
 
     private static Shell newShell(Display display, Domain domain) {
         Shell shell = createShell(display);
-
         Table table = newTable(domain, shell);
         formMenu(shell, table, domain);
         NotesController.fillTable(table, domain);

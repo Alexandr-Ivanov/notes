@@ -1,7 +1,7 @@
 package ru.ivanov.cft_testcase.notes.listeners;
 
-import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 
@@ -9,7 +9,7 @@ import ru.ivanov.cft_testcase.notes.Domain;
 import ru.ivanov.cft_testcase.notes.NotesController;
 import ru.ivanov.cft_testcase.notes.views.StringDialog;
 
-public class AddNoteListener extends SelectionAdapter {
+public class AddNoteListener implements SelectionListener {
     private final Shell shell;
     private final Table table;
     private final Domain domain;
@@ -31,5 +31,10 @@ public class AddNoteListener extends SelectionAdapter {
             domain.addNote(content);
             NotesController.refreshTable(table, domain);
         }
+    }
+
+    @Override
+    public void widgetDefaultSelected(SelectionEvent e) {
+
     }
 }
