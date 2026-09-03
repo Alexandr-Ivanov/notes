@@ -4,6 +4,7 @@
 package ru.ivanov.cft_testcase.notes;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
@@ -20,27 +21,15 @@ import ru.ivanov.cft_testcase.notes.listeners.EditNoteListener;
 public class MenuFormer {
 
     public static void addMenuItems(Shell shell, Table table, Menu menuBar, NotesController controller) {
-        addAddNoteMenuItem(shell, menuBar, controller);
-        addEditNoteMenuItem(shell, table, menuBar, controller);
-        addDeleteNoteMenuItem(shell, table, menuBar, controller);
+        addMenuItem(menuBar, ADD_NOTE, new AddNoteListener(shell, ADD_NOTE, controller));
+        addMenuItem(menuBar, EDIT_NOTE, new EditNoteListener(shell, table, EDIT_NOTE, controller));
+        addMenuItem(menuBar, DELETE_NOTE, new DeleteNoteListener(shell, table, DELETE_NOTE, controller));
     }
 
-    private static void addDeleteNoteMenuItem(Shell shell, Table table, Menu menuBar, NotesController controller) {
-        var deleteNoteItem = new MenuItem(menuBar, SWT.PUSH);
-        deleteNoteItem.setText(DELETE_NOTE);
-        deleteNoteItem.addSelectionListener(new DeleteNoteListener(shell, table, DELETE_NOTE, controller));
-    }
-
-    private static void addEditNoteMenuItem(Shell shell, Table table, Menu menuBar, NotesController controller) {
-        var editNoteItem = new MenuItem(menuBar, SWT.PUSH);
-        editNoteItem.setText(EDIT_NOTE);
-        editNoteItem.addSelectionListener(new EditNoteListener(shell, table, EDIT_NOTE, controller));
-    }
-
-    private static void addAddNoteMenuItem(Shell shell, Menu menuBar, NotesController controller) {
-        var addNoteItem = new MenuItem(menuBar, SWT.PUSH);
-        addNoteItem.setText(ADD_NOTE);
-        addNoteItem.addSelectionListener(new AddNoteListener(shell, ADD_NOTE, controller));
+    private static void addMenuItem(Menu menuBar, String ItemTitle, SelectionListener listener) {
+        var menuItem = new MenuItem(menuBar, SWT.PUSH);
+        menuItem.setText(ItemTitle);
+        menuItem.addSelectionListener(listener);
     }
 
     private static final String ADD_NOTE = " добавить запись";

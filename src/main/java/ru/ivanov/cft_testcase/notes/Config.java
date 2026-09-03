@@ -10,7 +10,6 @@ import org.hibernate.cfg.Configuration;
 public class Config {
     private static final String TITLE = "Notes";
 
-
     public static SessionFactory initSessionFactory() {
         var configuration = new Configuration().configure();
         return configuration.buildSessionFactory();
