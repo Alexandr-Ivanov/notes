@@ -12,11 +12,16 @@ public class NotesController {
     public static void refreshTable(Table table, Domain domain) {
         table.setLinesVisible(false);
         table.removeAll();
-        fillTable(table, domain);
+        doFillTable(table, domain);
         table.setLinesVisible(true);
     }
 
     public static void fillTable(Table table, Domain domain) {
+        doFillTable(table, domain);
+        table.setLinesVisible(true);
+    }
+
+    private static void doFillTable(Table table, Domain domain) {
         List<Note> notes = domain.getAllNotes();
 
         for (Note note : notes) {
