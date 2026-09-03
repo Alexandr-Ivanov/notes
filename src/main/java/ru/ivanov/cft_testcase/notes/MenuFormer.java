@@ -19,28 +19,28 @@ import ru.ivanov.cft_testcase.notes.listeners.EditNoteListener;
  */
 public class MenuFormer {
 
-    public static void addMenuItems(Shell shell, Table table, Domain domain, Menu menuBar) {
-        addAddNoteMenuItem(shell, table, domain, menuBar);
-        addEditNoteMenuItem(shell, table, domain, menuBar);
-        addDeleteNoteMenuItem(shell, table, domain, menuBar);
+    public static void addMenuItems(Shell shell, Table table, Domain domain, Menu menuBar, NotesController controller) {
+        addAddNoteMenuItem(shell, domain, menuBar, controller);
+        addEditNoteMenuItem(shell, table, domain, menuBar, controller);
+        addDeleteNoteMenuItem(shell, table, domain, menuBar, controller);
     }
 
-    private static void addDeleteNoteMenuItem(Shell shell, Table table, Domain domain, Menu menuBar) {
+    private static void addDeleteNoteMenuItem(Shell shell, Table table, Domain domain, Menu menuBar, NotesController controller) {
         MenuItem deleteNoteItem = new MenuItem(menuBar, SWT.PUSH);
         deleteNoteItem.setText(DELETE_NOTE);
-        deleteNoteItem.addSelectionListener(new DeleteNoteListener(shell, table, domain, DELETE_NOTE));
+        deleteNoteItem.addSelectionListener(new DeleteNoteListener(shell, table, domain, DELETE_NOTE, controller));
     }
 
-    private static void addEditNoteMenuItem(Shell shell, Table table, Domain domain, Menu menuBar) {
+    private static void addEditNoteMenuItem(Shell shell, Table table, Domain domain, Menu menuBar, NotesController controller) {
         MenuItem editNoteItem = new MenuItem(menuBar, SWT.PUSH);
         editNoteItem.setText(EDIT_NOTE);
-        editNoteItem.addSelectionListener(new EditNoteListener(shell, table, domain, EDIT_NOTE));
+        editNoteItem.addSelectionListener(new EditNoteListener(shell, table, domain, EDIT_NOTE, controller));
     }
 
-    private static void addAddNoteMenuItem(Shell shell, Table table, Domain domain, Menu menuBar) {
+    private static void addAddNoteMenuItem(Shell shell, Domain domain, Menu menuBar, NotesController controller) {
         MenuItem addNoteItem = new MenuItem(menuBar, SWT.PUSH);
         addNoteItem.setText(ADD_NOTE);
-        addNoteItem.addSelectionListener(new AddNoteListener(shell, table, domain, ADD_NOTE));
+        addNoteItem.addSelectionListener(new AddNoteListener(shell, domain, ADD_NOTE, controller));
     }
 
     private static final String ADD_NOTE = " добавить запись";

@@ -15,12 +15,14 @@ public class DeleteNoteListener implements SelectionListener {
     private final Table table;
     private final Domain domain;
     private final String title;
+    private final NotesController controller;
 
-    public DeleteNoteListener(Shell shell, Table table, Domain domain, String title) {
+    public DeleteNoteListener(Shell shell, Table table, Domain domain, String title, NotesController controller) {
         this.shell = shell;
         this.table = table;
         this.domain = domain;
         this.title = title;
+        this.controller = controller;
     }
 
     @Override
@@ -37,7 +39,7 @@ public class DeleteNoteListener implements SelectionListener {
 
             if (SWT.OK == result) {
                 domain.deleteNote(Long.parseLong(item.getText(0)));
-                NotesController.refreshTable(table, domain);
+                controller.refreshTable();
             }
         }
     }

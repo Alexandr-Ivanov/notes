@@ -3,7 +3,6 @@ package ru.ivanov.cft_testcase.notes.listeners;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Table;
 
 import ru.ivanov.cft_testcase.notes.Domain;
 import ru.ivanov.cft_testcase.notes.NotesController;
@@ -11,15 +10,15 @@ import ru.ivanov.cft_testcase.notes.views.StringDialog;
 
 public class AddNoteListener implements SelectionListener {
     private final Shell shell;
-    private final Table table;
     private final Domain domain;
     private final String title;
+    private final NotesController controller;
 
-    public AddNoteListener(Shell shell, Table table, Domain domain, String title) {
+    public AddNoteListener(Shell shell, Domain domain, String title, NotesController controller) {
         this.shell = shell;
-        this.table = table;
         this.domain = domain;
         this.title = title;
+        this.controller = controller;
     }
 
     @Override
@@ -29,7 +28,7 @@ public class AddNoteListener implements SelectionListener {
 
         if (null != content && !content.isEmpty()) {
             domain.addNote(content);
-            NotesController.refreshTable(table, domain);
+            controller.refreshTable();
         }
     }
 
