@@ -4,7 +4,6 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
-import org.eclipse.swt.widgets.TableItem;
 
 import ru.ivanov.cft_testcase.notes.NotesController;
 import ru.ivanov.cft_testcase.notes.views.StringDialog;
@@ -24,13 +23,13 @@ public class EditNoteListener implements SelectionListener {
 
     @Override
     public void widgetSelected(SelectionEvent e) {
-        TableItem[] selection = table.getSelection();
+        var selection = table.getSelection();
 
         if (0 < selection.length) {
-            TableItem item = selection[0];
+            var item = selection[0];
             System.out.println(item.getText(0));
-            StringDialog dialog = new StringDialog(shell, title);
-            String content = dialog.open(item.getText(1));
+            var dialog = new StringDialog(shell, title);
+            var content = dialog.open(item.getText(1));
 
             if (null != content && !content.isEmpty()) {
                 long noteId = Long.parseLong(item.getText(0));

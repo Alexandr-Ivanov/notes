@@ -20,8 +20,8 @@ public class AddNoteListener implements SelectionListener {
 
     @Override
     public void widgetSelected(SelectionEvent e) {
-        StringDialog dialog = new StringDialog(shell, title);
-        String content = dialog.open("");
+        var dialog = new StringDialog(shell, title);
+        var content = dialog.open("");
 
         if (null != content && !content.isEmpty()) {
             controller.addNote(content);

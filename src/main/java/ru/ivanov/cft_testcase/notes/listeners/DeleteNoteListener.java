@@ -24,20 +24,28 @@ public class DeleteNoteListener implements SelectionListener {
 
     @Override
     public void widgetSelected(SelectionEvent e) {
-        TableItem[] selection = table.getSelection();
+        var selection = table.getSelection();
 
         if (0 < selection.length) {
-            TableItem item = selection[0];
-            System.out.println(item.getText(0));
-            MessageBox box = new MessageBox(shell, SWT.OK | SWT.CANCEL | SWT.ICON_QUESTION | SWT.APPLICATION_MODAL);
-            box.setMessage(title + ": " + item.getText(1));
-            int result = box.open();
+            var item = selection[0];
+            int result = getDecision(item);
             System.out.println(result);
 
-            if (SWT.OK == result) {
-                long noteId = Long.parseLong(item.getText(0));
-                controller.deleteNote(noteId);
-            }
+            handleResult(result, item);
+        }
+    }
+
+    private int getDecision(TableItem item) {
+        System.out.println(item.getText(0));
+        var box = new MessageBox(shell, SWT.OK | SWT.CANCEL | SWT.ICON_QUESTION | SWT.APPLICATION_MODAL);
+        box.setMessage(title + ": " + item.getText(1));
+        return box.open();
+    }
+
+    private void handleResult(int result, TableItem item) {
+        if (SWT.OK == result) {
+            long noteId = Long.parseLong(item.getText(0));
+            controller.deleteNote(noteId);
         }
     }
 

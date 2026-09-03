@@ -26,19 +26,19 @@ public class MenuFormer {
     }
 
     private static void addDeleteNoteMenuItem(Shell shell, Table table, Menu menuBar, NotesController controller) {
-        MenuItem deleteNoteItem = new MenuItem(menuBar, SWT.PUSH);
+        var deleteNoteItem = new MenuItem(menuBar, SWT.PUSH);
         deleteNoteItem.setText(DELETE_NOTE);
         deleteNoteItem.addSelectionListener(new DeleteNoteListener(shell, table, DELETE_NOTE, controller));
     }
 
     private static void addEditNoteMenuItem(Shell shell, Table table, Menu menuBar, NotesController controller) {
-        MenuItem editNoteItem = new MenuItem(menuBar, SWT.PUSH);
+        var editNoteItem = new MenuItem(menuBar, SWT.PUSH);
         editNoteItem.setText(EDIT_NOTE);
         editNoteItem.addSelectionListener(new EditNoteListener(shell, table, EDIT_NOTE, controller));
     }
 
     private static void addAddNoteMenuItem(Shell shell, Menu menuBar, NotesController controller) {
-        MenuItem addNoteItem = new MenuItem(menuBar, SWT.PUSH);
+        var addNoteItem = new MenuItem(menuBar, SWT.PUSH);
         addNoteItem.setText(ADD_NOTE);
         addNoteItem.addSelectionListener(new AddNoteListener(shell, ADD_NOTE, controller));
     }
