@@ -8,16 +8,26 @@ import ru.ivanov.cft_testcase.notes.data.Note;
 import java.util.List;
 
 public class NotesController {
+    private final Table table;
+    private final Domain domain;
 
+    public NotesController(Table table, Domain domain) {
+        this.table = table;
+        this.domain = domain;
+    }
 
-    public static void refreshTable(Table table, Domain domain) {
-        table.setLinesVisible(false);
-        table.removeAll();
+    public void  refreshTable() {
+        refreshTable(table, domain);
+    }
+
+    public void fillTable() {
         doFillTable(table, domain);
         table.setLinesVisible(true);
     }
 
-    public static void fillTable(Table table, Domain domain) {
+    public static void refreshTable(Table table, Domain domain) {
+        table.setLinesVisible(false);
+        table.removeAll();
         doFillTable(table, domain);
         table.setLinesVisible(true);
     }

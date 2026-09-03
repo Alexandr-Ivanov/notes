@@ -37,9 +37,10 @@ public class NotesApp {
 
     private static Shell newShell(Display display, Domain domain) {
         Shell shell = createShell(display);
-        Table table = newTable(domain, shell);
+        Table table = newTable(shell);
+        NotesController controller = new NotesController(table, domain);
         formMenu(shell, table, domain);
-        NotesController.fillTable(table, domain);
+        controller.fillTable();
         return shell;
     }
 
@@ -58,11 +59,10 @@ public class NotesApp {
     }
 
     /**
-     * @param domain
      * @param shell
      * @return
      */
-    private static Table newTable(Domain domain, Shell shell) {
+    private static Table newTable(Shell shell) {
         Table table = new Table(shell, SWT.BORDER | SWT.SINGLE);
         GridData data = new GridData(SWT.RIGHT, SWT.LEFT, true, true);
         data.heightHint = 200;
