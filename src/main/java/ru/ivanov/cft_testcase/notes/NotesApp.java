@@ -20,9 +20,9 @@ public class NotesApp {
      * @param args
      */
     public static void main(String[] args) {
-        try (SessionFactory sessionFactory = initSessionFactory()) {
-            Display display = new Display();
-            Shell shell = newShell(display, new Domain(sessionFactory));
+        try (var sessionFactory = initSessionFactory()) {
+            var display = new Display();
+            var shell = newShell(display, new Domain(sessionFactory));
             shell.open();
 
             while (!shell.isDisposed()) {
@@ -36,24 +36,24 @@ public class NotesApp {
     }
 
     private static Shell newShell(Display display, Domain domain) {
-        Shell shell = createShell(display);
-        Table table = newTable(shell);
-        NotesController controller = new NotesController(table, domain);
+        var shell = createShell(display);
+        var table = newTable(shell);
+        var controller = new NotesController(table, domain);
         formMenu(shell, table, controller);
         controller.fillTable();
         return shell;
     }
 
     private static Shell createShell(Display display) {
-        Shell shell = new Shell(display);
+        var shell = new Shell(display);
         shell.setText(TITLE);
-        FillLayout layout = new FillLayout();
+        var layout = new FillLayout();
         shell.setLayout(layout);
         return shell;
     }
 
     private static void formMenu(Shell shell, Table table, NotesController controller) {
-        Menu menuBar = new Menu(shell, SWT.BAR);
+        var menuBar = new Menu(shell, SWT.BAR);
         MenuFormer.addMenuItems(shell, table, menuBar, controller);
         shell.setMenuBar(menuBar);
     }
@@ -63,19 +63,19 @@ public class NotesApp {
      * @return
      */
     private static Table newTable(Shell shell) {
-        Table table = new Table(shell, SWT.BORDER | SWT.SINGLE);
-        GridData data = new GridData(SWT.RIGHT, SWT.LEFT, true, true);
+        var table = new Table(shell, SWT.BORDER | SWT.SINGLE);
+        var data = new GridData(SWT.RIGHT, SWT.LEFT, true, true);
         data.heightHint = 200;
         table.setLayoutData(data);
-        TableColumn tableColumn = new TableColumn(table, SWT.RIGHT);
+        var tableColumn = new TableColumn(table, SWT.RIGHT);
         tableColumn.setWidth(50);
-        TableColumn tableColumn2 = new TableColumn(table, SWT.LEFT);
+        var tableColumn2 = new TableColumn(table, SWT.LEFT);
         tableColumn2.setWidth(500);
         return table;
     }
 
     private static SessionFactory initSessionFactory() {
-        Configuration configuration = new Configuration().configure();
+        var configuration = new Configuration().configure();
         return configuration.buildSessionFactory();
     }
 

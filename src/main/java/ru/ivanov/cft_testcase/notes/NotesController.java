@@ -27,7 +27,7 @@ public class NotesController {
     }
 
     public void updateNote(long noteId, String content) {
-        Note note = domain.getNote(noteId);
+        var note = domain.getNote(noteId);
         note.setContent(content);
         domain.updateNote(note);
         refreshTable();
@@ -49,7 +49,7 @@ public class NotesController {
         List<Note> notes = domain.getAllNotes();
 
         for (Note note : notes) {
-            TableItem item = new TableItem(table, SWT.NONE);
+            var item = new TableItem(table, SWT.NONE);
             item.setText(new String[] { Long.toString(note.getId()), note.getContent() });
         }
     }
