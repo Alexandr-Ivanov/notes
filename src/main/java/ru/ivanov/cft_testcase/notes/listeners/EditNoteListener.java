@@ -7,8 +7,8 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 
 import ru.ivanov.cft_testcase.notes.Domain;
-import ru.ivanov.cft_testcase.notes.Note;
 import ru.ivanov.cft_testcase.notes.NotesController;
+import ru.ivanov.cft_testcase.notes.data.Note;
 import ru.ivanov.cft_testcase.notes.views.StringDialog;
 
 public class EditNoteListener implements SelectionListener {

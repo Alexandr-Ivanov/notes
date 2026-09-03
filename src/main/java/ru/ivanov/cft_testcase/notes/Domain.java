@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import ru.ivanov.cft_testcase.notes.data.Note;
 
 /**
  * @author papa

@@ -3,6 +3,7 @@ package ru.ivanov.cft_testcase.notes;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
+import ru.ivanov.cft_testcase.notes.data.Note;
 
 import java.util.List;
 

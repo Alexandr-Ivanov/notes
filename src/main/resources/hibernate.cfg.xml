@@ -32,6 +32,6 @@
 		<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
 
 		<!-- mappings for annotated classes -->
-		<mapping class="ru.ivanov.cft_testcase.notes.Note" />
+		<mapping class="ru.ivanov.cft_testcase.notes.data.Note" />
 	</session-factory>
 </hibernate-configuration>

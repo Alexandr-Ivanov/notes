@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.junit.Assert;
 import org.junit.Test;
+import ru.ivanov.cft_testcase.notes.data.Note;
 
 /**
  * @author papa
